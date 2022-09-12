@@ -22,13 +22,14 @@ def f():
     ('Israel', '12')
     ]
 
-    dict = {}
-    for value, key in list_of_tuples:
-        dict[key] = dict.get(key) + ", " + value if key in dict.keys() else value
-    
-    for key, value in dict.items():
-        print(f'\'{key}\' : \'{value}\'')
+    d = {}
+    for key, value in list_of_tuples:
+        d[key] = int(value)
+
+    dict_sort = dict(sorted(d.items(), key=lambda item: (item[1], item[0])))
+    for key in dict_sort.keys():
+        print(key)
 
 
 if __name__ == '__main__':
-    f()
+        f()
