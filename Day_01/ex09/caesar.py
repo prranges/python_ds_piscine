@@ -1,4 +1,3 @@
-from cgitb import reset
 import sys
 
 def check_symbols(text):
