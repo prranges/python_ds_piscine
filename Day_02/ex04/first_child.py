@@ -1,10 +1,12 @@
 import sys
-import os
+from random import randint
 
 class Research:
     def __init__(self, file):
         self.file = file
-        self.calculator = self.Calculations()
+        self.calculator = self.Calculations(self.file_reader())
+        self.analytics = self.Analytics(self.file_reader())
+
 
     def file_reader(self, has_header=True):
         if len(sys.argv) != 2:
@@ -29,12 +31,30 @@ class Research:
             return lists
 
     class Calculations:
-        def counts(self, lists):
-            return [sum(list[0] for list in lists), sum(list[1] for list in lists)]
+        def __init__(self, lists):
+            self.lists = lists    
+        
+        def counts(self):
+            return [sum(list[0] for list in self.lists), sum(list[1] for list in self.lists)]
 
         def fractions(self, heads, tails):
             sum = heads + tails
             return [heads / sum * 100, tails / sum * 100]
+
+    class Analytics(Calculations):
+        def __init__(self, lists):
+            super().__init__(lists)
+
+        def predict_random(self, n):
+            result = []
+            for i in range(n):
+                head = randint(0, 1)
+                tail = 1 if head == 0 else 0
+                result.append([head, tail])
+            return result
+
+        def predict_last(self):
+            return self.lists[-1]
 
 
 if __name__ == '__main__':
@@ -42,9 +62,13 @@ if __name__ == '__main__':
         research = Research(sys.argv[1])
         result = research.file_reader()
         print(result)
-        counts = research.calculator.counts(result)
+        counts = research.calculator.counts()
         print(counts[0], counts[1])
         fractions = research.calculator.fractions(counts[0], counts[1])
         print(fractions[0], fractions[1])
+        predict_random = research.analytics.predict_random(3)
+        print(predict_random)
+        predict_last = research.analytics.predict_last()
+        print(predict_last)
     except Exception as e:
         print(e, file=sys.stderr)

@@ -1,14 +1,14 @@
-import sys
 import os
+from random import randint
 
 class Research:
     def __init__(self, file):
         self.file = file
-        self.calculator = self.Calculations()
+        self.calculator = self.Calculations(self.file_reader())
+        self.analytics = self.Analytics(self.file_reader())
+
 
     def file_reader(self, has_header=True):
-        if len(sys.argv) != 2:
-            raise Exception('To many arguments.')
         if len(self.file.split('.')) != 2:
             raise Exception('Wrong file name.')
         with open(self.file, 'r') as input:
@@ -29,22 +29,31 @@ class Research:
             return lists
 
     class Calculations:
-        def counts(self, lists):
-            return [sum(list[0] for list in lists), sum(list[1] for list in lists)]
+        def __init__(self, lists):
+            self.lists = lists    
+        
+        def counts(self):
+            return [sum(list[0] for list in self.lists), sum(list[1] for list in self.lists)]
 
         def fractions(self, heads, tails):
             sum = heads + tails
             return [heads / sum * 100, tails / sum * 100]
 
+    class Analytics(Calculations):
+        def __init__(self, lists):
+            super().__init__(lists)
 
-if __name__ == '__main__':
-    try:
-        research = Research(sys.argv[1])
-        result = research.file_reader()
-        print(result)
-        counts = research.calculator.counts(result)
-        print(counts[0], counts[1])
-        fractions = research.calculator.fractions(counts[0], counts[1])
-        print(fractions[0], fractions[1])
-    except Exception as e:
-        print(e, file=sys.stderr)
+        def predict_random(self, n):
+            result = []
+            for i in range(n):
+                head = randint(0, 1)
+                tail = 1 if head == 0 else 0
+                result.append([head, tail])
+            return result
+
+        def predict_last(self):
+            return self.lists[-1]
+
+        def save_file(self, data, file_name, extension='txt'):
+            with open(file_name + '.' + extension, 'w') as outfile:
+                outfile.write(data)
