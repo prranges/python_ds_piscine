@@ -13,20 +13,20 @@ class Research:
             raise Exception('Wrong file name.')
         with open(self.file, 'r') as input:
             lines = input.readlines()
-            if lines[0].strip() == '0,1' or lines[0].strip() == '1,0':
-                has_header = False
-            if has_header:
-                if len(lines[0].split(',')) != 2:
-                    raise Exception('Wrong header.')
-                lines = lines[1:]
-            if len(lines) < 2:
-                raise Exception('File is empty.')
-            lists = []
-            for line in lines:
-                if line.strip() != '0,1' and line.strip() != '1,0':
-                    raise Exception('Data is wrong.')
-                lists.append([int(num) for num in line.strip().split(',')])
-            return lists
+        if lines[0].strip() == '0,1' or lines[0].strip() == '1,0':
+            has_header = False
+        if has_header:
+            if len(lines[0].split(',')) != 2:
+                raise Exception('Wrong header.')
+            lines = lines[1:]
+        if len(lines) < 2:
+            raise Exception('File is empty.')
+        lists = []
+        for line in lines:
+            if line.strip() != '0,1' and line.strip() != '1,0':
+                raise Exception('Data is wrong.')
+            lists.append([int(num) for num in line.strip().split(',')])
+        return lists
 
     class Calculations:
         def counts(self, lists):
