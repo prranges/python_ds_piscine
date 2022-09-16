@@ -22,7 +22,6 @@ def compare_results(command, num, n):
         stmt_reduce = f'reduce_sum({n})'
         setup_reduce = 'from __main__ import reduce_sum'
         time = [timeit.timeit(stmt=stmt_reduce, setup=setup_reduce, number=num), 'list comprehension']
-
     print(f'{time[0]}')
 
 def main(argv):
