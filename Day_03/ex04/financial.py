@@ -1,4 +1,4 @@
-#!/usr/bin/env python -m cProfile -s tottime
+#!prranges/bin/python3.10Y
 
 import sys
 import time

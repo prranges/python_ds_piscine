@@ -1,4 +1,4 @@
-# !prranges/bin/python3.10
+#!prranges/bin/python3.10
 
 import sys
 import time
