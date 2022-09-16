@@ -1,0 +1,14 @@
+('Total Revenue', '198,270,000', '198,270,000', '168,088,000', '143,015,000', '125,843,000')
+         174070 function calls (172826 primitive calls) in 0.729 seconds
+
+   Ordered by: cumulative time
+   List reduced from 765 to 5 due to restriction <5>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.729    0.729 /Users/prranges/projects/Python_DS_Piscine/Day_03/ex04/financial_enhanced.py:24(main)
+        1    0.000    0.000    0.729    0.729 /Users/prranges/projects/Python_DS_Piscine/Day_03/ex04/financial_enhanced.py:9(beautiful)
+        1    0.000    0.000    0.628    0.628 /Users/prranges/projects/Python_DS_Piscine/Day_03/ex00/prranges/lib/python3.10/site-packages/httpx/_api.py:167(get)
+        1    0.000    0.000    0.628    0.628 /Users/prranges/projects/Python_DS_Piscine/Day_03/ex00/prranges/lib/python3.10/site-packages/httpx/_api.py:23(request)
+        1    0.000    0.000    0.613    0.613 /Users/prranges/projects/Python_DS_Piscine/Day_03/ex00/prranges/lib/python3.10/site-packages/httpx/_client.py:761(request)
+
+

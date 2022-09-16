@@ -1,4 +1,4 @@
-# !prranges/bin/python3.10
+#!/usr/bin/env python -m cProfile -s tottime
 
 import sys
 import time
@@ -19,7 +19,7 @@ def beautiful(argv):
         breakdowns = [tag.find(class_='Va(m)').get_text() for tag in tags]
         if sys.argv[2] not in breakdowns:
             raise Exception('Not found breakdown')
-        time.sleep(5)
+        # time.sleep(5)
         return tuple(t.get_text() for t in tags[breakdowns.index(sys.argv[2])].find_all('span'))
         
 
